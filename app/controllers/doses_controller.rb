@@ -1,30 +1,22 @@
 class DosesController < ApplicationController
-  def index
-    @cocktail = Cocktail.find(params[:cocktail_id])
-    @doses = Dose.where(cocktail: @cocktail)
-  end
-
-  def new
-    @cocktail = Cocktail.find(params[:cocktail_id])
-    @dose = Dose.new
-  end
-
   def create
     @cocktail = Cocktail.find(params[:cocktail_id])
     @dose = Dose.new(strong_params)
     @dose.cocktail = @cocktail
 
     if @dose.save
-      redirect_to cocktail_doses_path(@cocktail)
+      redirect_to cocktail_path(@cocktail)
     else
-      render :new
+      @doses = Dose.where(cocktail: @cocktail)
+      render 'cocktails/show'
     end
   end
 
   def destroy
-    @dose = Dose.find(params[:id])
-    @dose.destroy
-    redirect_to cocktail_doses_path(@dose.cocktail)
+    dose = Dose.find(params[:id])
+    dose.destroy
+    @doses = Dose.where(cocktail: dose.cocktail)
+    redirect_to cocktail_path(dose.cocktail)
   end
 
   private
