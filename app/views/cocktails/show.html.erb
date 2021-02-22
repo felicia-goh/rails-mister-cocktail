@@ -29,7 +29,10 @@
   <ul>
     <% @reviews.each do |review| %>
       <li>
-        <%= review.rating %>/5, <%= review.content %>
+        <% review.rating.times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+        - <%= review.content %>
         <%= link_to review_path(review), method: :delete do %>
           <i class="fas fa-trash"></i>
         <% end %>
