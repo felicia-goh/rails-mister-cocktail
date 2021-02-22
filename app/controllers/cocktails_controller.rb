@@ -1,6 +1,6 @@
 class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+    @cocktails = params[:query].present? ? Cocktail.where("lower(name) LIKE ?", "%#{params[:query].downcase}%") : Cocktail.all
   end
 
   def show
