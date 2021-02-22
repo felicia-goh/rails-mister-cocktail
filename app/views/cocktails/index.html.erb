@@ -2,8 +2,23 @@
   <div class="cards">
     <% @cocktails.each do |cocktail| %>
       <%= link_to cocktail_path(cocktail) do %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          <%= cocktail.name %>
+        <div class="card border-dark" style="width: 18rem;">
+          <%= cl_image_tag cocktail.photo.key, height: 200, width: 300, crop: :fill, class: "card-img-top"  %>
+          <div class="card-body bg-dark">
+            <h5 class="card-title"><%= cocktail.name %></h5>
+            <% if cocktail.rating.nil? %>
+              <% 5.times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+            <% else %>
+              <% cocktail.rating.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <% (5 - cocktail.rating).times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     <% end %>

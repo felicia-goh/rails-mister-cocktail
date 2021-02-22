@@ -14,11 +14,21 @@ ingredient_arr.each do |hash|
   Ingredient.create(name: hash['strIngredient1'])
 end
 
-# 5.times do
-#   # results[0]['strDrinkThumb'] -> img url
-#   # results[0]['strDrink']
-#   cocktail_url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-#   cocktail_raw_json = open(cocktail_url).read
-#   cocktail_results = JSON.parse(cocktail_raw_json)
-#   Cocktail.create(name: cocktail_results[0]['strDrink'])
-# end
+ingredients = Ingredient.all
+
+10.times do
+  # img url: cocktail_results['strDrinkThumb']
+  rating = (0..5).to_a.sample
+  cocktail_url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+  cocktail_raw_json = open(cocktail_url).read
+  cocktail_results = JSON.parse(cocktail_raw_json)['drinks'][0]
+  cocktail = Cocktail.create!(name: cocktail_results['strDrink'], rating: rating)
+
+  thumbnail = URI.open(cocktail_results['strDrinkThumb'])
+  cocktail.photo.attach(io: thumbnail, filename: "#{cocktail.name}.png", content_type: 'image/png')
+
+  Dose.create!(description: cocktail_results['strMeasure1'],
+              ingredient: ingredients.sample,
+              cocktail: cocktail)
+  Review.create!(rating: rating, content: 'Lorem ipsum', cocktail: cocktail)
+end
