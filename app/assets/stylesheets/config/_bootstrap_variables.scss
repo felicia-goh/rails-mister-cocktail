@@ -2,24 +2,29 @@
 // 1. All Bootstrap variables are here => https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
 // 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
 // 3. You can override them below!
+$dark-blue:  #1c2541; // 1D3557
+$pink: #f783ac;
+$pastel-green: #A8DADC;
 
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
+$body-bg:                 $dark-blue;
 $font-size-base: 1rem;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
+$body-color: $pastel-green;
+$primary:    $pink;
+$secondary:  $pastel-green;
+$success:    $dark-blue;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
+$color:      $pastel-green;
 
 // Buttons & inputs' radius
-$border-radius:    2px;
-$border-radius-lg: 2px;
+$border-radius:    4px;
+$border-radius-lg: 8px;
 $border-radius-sm: 2px;
 
 // Override other variables below!

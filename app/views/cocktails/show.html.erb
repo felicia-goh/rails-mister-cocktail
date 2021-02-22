@@ -1,16 +1,22 @@
-<h1><%= @cocktail.name %></h1>
-<ul>
-  <% @doses.each do |dose| %>
-    <li>
-      <%= dose.description %>, <%= dose.ingredient.name %>
-      (<%= link_to 'Delete', dose_path(dose), method: :delete  %>)
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1><%= @cocktail.name %></h1>
+  <ul>
+    <% @doses.each do |dose| %>
+      <li>
+        <%= dose.description %>, <%= dose.ingredient.name %>
+        (<%= link_to 'Delete', dose_path(dose), method: :delete  %>)
+        <i class="far fa-cocktail"></i>
+      </li>
+    <% end %>
+  </ul>
+</div>
 <hr>
-<h3>Add a new dose</h3>
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description %>
-  <%= f.association :ingredient %>
-  <%= f.button :submit, class: "btn btn-primary btn-block" %>
-<% end %>
+
+<div class="container">
+  <h4>Add a new dose</h4>
+  <%= simple_form_for [@cocktail, @dose] do |f| %>
+    <%= f.input :description %>
+    <%= f.association :ingredient %>
+    <%= f.button :submit, class: "btn btn-primary btn-block" %>
+  <% end %>
+</div>
