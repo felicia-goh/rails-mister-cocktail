@@ -10,13 +10,37 @@
     <% end %>
   </ul>
 </div>
-<hr>
+<br>
 
 <div class="container">
   <h4>Add a new dose</h4>
   <%= simple_form_for [@cocktail, @dose] do |f| %>
     <%= f.input :description %>
     <%= f.association :ingredient %>
+    <%= f.button :submit, class: "btn btn-primary btn-block" %>
+  <% end %>
+
+  <i class="far fa-cocktail"></i>
+</div>
+
+<hr>
+<div class="container">
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <%= review.rating %>/5, <%= review.content %>
+        (<%= link_to 'Delete', review_path(review), method: :delete  %>)
+        <i class="far fa-cocktail"></i>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<br>
+<div class="container">
+  <h4>Add a new review</h4>
+  <%= simple_form_for [@cocktail, @review] do |f| %>
+    <%= f.input :rating %>
+    <%= f.input :content %>
     <%= f.button :submit, class: "btn btn-primary btn-block" %>
   <% end %>
 </div>
