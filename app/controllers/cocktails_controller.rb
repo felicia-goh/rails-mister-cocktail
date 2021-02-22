@@ -19,7 +19,7 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new(strong_params)
 
     if @cocktail.save
-      redirect_to cocktails_path
+      redirect_to root_path
     else
       render :new
     end
@@ -28,6 +28,6 @@ class CocktailsController < ApplicationController
   private
 
   def strong_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :photo)
   end
 end

@@ -1,6 +1,7 @@
 <div class="container">
   <%= simple_form_for @cocktail do |f| %>
     <%= f.input :name %>
+    <%= f.file_field :photo, as: :file %>
     <%= f.button :submit, class: "btn btn-primary btn-block" %>
   <% end %>
 </div>
