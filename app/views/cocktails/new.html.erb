@@ -1,7 +1,10 @@
-<div class="container">
-  <%= simple_form_for @cocktail do |f| %>
-    <%= f.input :name %>
-    <%= f.file_field :photo, as: :file %>
-    <%= f.button :submit, class: "btn btn-primary btn-block" %>
-  <% end %>
+<div class="container form">
+  <h2 class="m-3">Add a new cocktail</h2>
+  <div class="info-card p-3 m-3">
+    <%= simple_form_for @cocktail do |f| %>
+      <%= f.input :name %>
+      <%= f.file_field :photo, as: :file %>
+      <%= f.button :submit, class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
 </div>
