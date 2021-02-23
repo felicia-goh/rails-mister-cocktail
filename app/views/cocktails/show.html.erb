@@ -7,33 +7,38 @@
 
 <div class="container">
   <div class="row">
-    <div class="info-card p-3 m-3 col-lg-8 col-sm-12">
-      <h4>Make your own</h4>
-      <ul>
-        <% @doses.each do |dose| %>
-          <li>
-            <%= dose.ingredient.name %>, <%= dose.description %>
-            <%= link_to dose_path(dose), method: :delete do %>
-              <i class="fas fa-trash"></i>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="col-lg-8 col-sm-12">
+      <div class="info-card p-3 my-3">
+        <h4>Make your own</h4>
+        <ul>
+          <% @doses.each do |dose| %>
+            <li>
+              <%= dose.ingredient.name %>, <%= dose.description %>
+              <%= link_to dose_path(dose), method: :delete do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <div class="info-card p-3 m-3 col-lg-4 col-sm-12">
-      <h5>Add a new dose</h5>
-      <%= simple_form_for [@cocktail, @dose] do |f| %>
-        <%= f.input :description %>
-        <%= f.association :ingredient %>
-        <%= f.button :submit, class: "btn btn-primary btn-block" %>
-      <% end %>
+    <div class="col-lg-4 col-sm-12">
+      <div class="info-card p-3 my-3">
+        <h5>Add a new dose</h5>
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+          <%= f.input :description %>
+          <%= f.association :ingredient %>
+          <%= f.button :submit, class: "btn btn-primary btn-block" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="info-card p-3 m-3 col-lg-8 col-sm-12">
+    <div class="col-lg-8 col-sm-12">
+      <div class="info-card p-3 my-3">
         <h4>What others say...</h4>
         <ul>
           <% @reviews.each do |review| %>
@@ -48,14 +53,17 @@
             </li>
           <% end %>
         </ul>
+        </div>
       </div>
-    <div class="info-card p-3 m-3 col-lg-4 col-sm-12">
-      <h5>Add a new review</h5>
-      <%= simple_form_for [@cocktail, @review] do |f| %>
-        <%= f.input :rating %>
-        <%= f.input :content %>
-        <%= f.button :submit, class: "btn btn-primary btn-block" %>
-      <% end %>
+    <div class="col-lg-4 col-sm-12">
+      <div class="info-card p-3 my-3">
+        <h5>Add a new review</h5>
+        <%= simple_form_for [@cocktail, @review] do |f| %>
+          <%= f.input :rating %>
+          <%= f.input :content %>
+          <%= f.button :submit, class: "btn btn-primary btn-block" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
